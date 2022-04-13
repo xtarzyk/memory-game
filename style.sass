@@ -2,3 +2,43 @@ body
   margin: 0
   padding: 0
   box-sizing: border-box
+  background: #131313
+
+div
+  display: flex
+
+.main
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  width: 95vw
+  height: 95vh
+  margin: 20px 50px
+  border-radius: 15px
+  background: #2c2929
+
+  &__board
+    justify-content: space-around
+    align-items: center
+    flex-wrap: wrap
+    width: 800px
+    height: 1000px
+    margin: 20px
+    border-radius: 15px
+    background: #424141
+
+  &__scores
+    width: 300px
+    height: 200px
+    margin: 40px
+    border-radius: 15px
+    background: #424141
+
+.board__cell
+  width: 19%
+  height: 17%
+  margin: 10px
+  border-radius: 50%
+  //background: saddlebrown
+  background: url("img/paw.png")
+  background-size: contain
