@@ -38,7 +38,22 @@ div
   width: 19%
   height: 17%
   margin: 10px
-  border-radius: 50%
+  //border-radius: 50%
   //background: saddlebrown
-  background: url("img/paw.png")
+  background: url("img/paw.png") no-repeat
   background-size: contain
+
+.cell__cat-img
+  overflow: hidden
+  border-radius: 50%
+  z-index: -1
+
+@keyframes flip_animation
+  from
+    transform: rotateY(0deg)
+  to
+    transform: rotateY(180deg)
+
+.board__cell:hover
+  animation-name: flip_animation
+  animation-duration: 1s

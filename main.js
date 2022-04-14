@@ -1,4 +1,5 @@
-import { prepareBoard, createCells } from './board'
+import { prepareBoard, createCells, addImages } from './board'
 
 prepareBoard()
 createCells()
+addImages()
