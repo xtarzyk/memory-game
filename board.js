@@ -1,3 +1,5 @@
+import { flipCard } from './main'
+
 const boardArray = Array.from({ length: 20 })
 const gameBoard = document.querySelector('.main__board')
 const boardCell = document.createElement('div')
@@ -26,18 +28,24 @@ const createCells = () => {
     const cellsNodes = boardArray.map(() => boardCell.cloneNode(true))
 
     cellsNodes.forEach(cellNode => {
-        const imgContainer = document.createElement('img')
+        const cellFront = document.createElement('div')
+        const cellBack = document.createElement('img')
 
-        imgContainer.classList.add('cell__cat-img')
-        cellNode.appendChild(imgContainer)
+        cellFront.classList.add('cell__front')
+        cellBack.classList.add('cell__back')
+
+        cellNode.appendChild(cellFront)
+        cellNode.appendChild(cellBack)
         gameBoard.appendChild(cellNode)
+
+        cellNode.addEventListener('click', flipCard)
     })
 
     return cellsNodes
 }
 
 const addImages = () => {
-    const catsContainers = document.querySelectorAll('.cell__cat-img')
+    const catsContainers = document.querySelectorAll('.cell__back')
 
     catsContainers.forEach((cat, index) => {
         cat.setAttribute('src', shuffledCats[index])

@@ -18,6 +18,7 @@ div
   background: #2c2929
 
   &__board
+    perspective: 1000px
     justify-content: space-around
     align-items: center
     flex-wrap: wrap
@@ -35,26 +36,34 @@ div
     background: #424141
 
 .board__cell
+  position: relative
+  transition: 0.6s
+  transform-style: preserve-3d
   width: 19%
   height: 17%
   margin: 10px
-  //border-radius: 50%
-  //background: saddlebrown
+  border-radius: 50%
+
+.cell__front
+  position: absolute
+  width: 100%
+  height: 100%
+  backface-visibility: hidden
   background: url("img/paw.png") no-repeat
   background-size: contain
+  z-index: 2
+  transform: rotateY(0deg)
 
-.cell__cat-img
-  overflow: hidden
+.cell__back
+  position: absolute
+  width: 100%
+  height: 100%
+  backface-visibility: hidden
+  transform: rotateY(180deg)
   border-radius: 50%
-  z-index: -1
 
-@keyframes flip_animation
-  from
-    transform: rotateY(0deg)
-  to
-    transform: rotateY(180deg)
+.toggle-board__cell
+  transform: rotateY(180deg)
 
-.board__cell:hover
-  //animation: flip_animation 2s infinite linear
-  animation-name: flip_animation
-  animation-duration: 1s
+.disabled
+  pointer-events: none
