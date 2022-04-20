@@ -1,4 +1,4 @@
-import {flipCard} from './main'
+import { flipCard } from './main'
 
 const gameBoard = document.querySelector('.main__board')
 const scoresBoard = document.querySelector('.main__scores')
