@@ -40,4 +40,6 @@ prepareBoard()
 createCells()
 addImages()
 
-export { flipCard }
+export {
+    flipCard
+}

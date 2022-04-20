@@ -59,4 +59,8 @@ const addImages = () => {
     })
 }
 
-export { prepareBoard, createCells, addImages }
+export {
+    prepareBoard,
+    createCells,
+    addImages
+}
