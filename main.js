@@ -3,11 +3,11 @@ import { createCells } from './board'
 const mainBoard = document.querySelector('.main__board')
 const scoresResult = document.querySelector('.result')
 let selectedCards = []
-let scores = 0
+let score = 0
 
 const flipCard = event => {
     event.target.parentNode.classList.add('toggle-board__cell', 'disabled')
-    selectedCards.push(event.target.parentNode)
+    selectedCards = selectedCards.concat(event.target.parentNode)
 
     if (selectedCards.length === 2) {
         mainBoard.classList.add('disabled')
@@ -18,11 +18,12 @@ const flipCard = event => {
 }
 
 const checkBoard = () => {
-    if (selectedCards[0].lastChild.src === selectedCards[1].lastChild.src) {
+    const [firstCard, secondCard] = selectedCards
+    if (firstCard.lastChild.src === secondCard.lastChild.src) {
         selectedCards = []
         mainBoard.classList.remove('disabled')
-        scores++
-        scoresResult.innerHTML = `${scores}`
+        score++
+        scoresResult.innerHTML = `${score}`
 
         return
     }
