@@ -1,8 +1,6 @@
-import { flipCard } from './main'
+import {flipCard} from './main'
 
-const boardArray = Array.from({ length: 20 })
 const gameBoard = document.querySelector('.main__board')
-const boardCell = document.createElement('div')
 const scoresBoard = document.querySelector('.main__scores')
 const scoresHeader = document.createElement('h1')
 const result = document.createElement('h1')
@@ -13,9 +11,6 @@ result.innerHTML = '0'
 result.classList.add('result')
 scoresBoard.appendChild(scoresHeader)
 scoresBoard.appendChild(result)
-boardCell.classList.add('board__cell')
-
-const duplicateImages = imgs.flatMap(img => [img, img])
 
 const shuffleArray = array => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -27,40 +22,26 @@ const shuffleArray = array => {
     return array
 }
 
-const shuffledCats = shuffleArray(duplicateImages)
-
-const prepareBoard = () => boardArray.fill(boardCell)
-
 const createCells = () => {
-    const cellsNodes = boardArray.map(() => boardCell.cloneNode(true))
+    shuffleArray(imgs.concat(imgs))
+        .forEach((img) => {
+            const boardCell = document.createElement('div')
+            const cellFront = document.createElement('div')
+            const cellBack = document.createElement('img')
 
-    cellsNodes.forEach(cellNode => {
-        const cellFront = document.createElement('div')
-        const cellBack = document.createElement('img')
+            cellFront.classList.add('cell__front')
+            cellBack.classList.add('cell__back')
+            boardCell.classList.add('board__cell')
 
-        cellFront.classList.add('cell__front')
-        cellBack.classList.add('cell__back')
+            cellBack.setAttribute('src', img)
+            boardCell.appendChild(cellFront)
+            boardCell.appendChild(cellBack)
+            gameBoard.appendChild(boardCell)
 
-        cellNode.appendChild(cellFront)
-        cellNode.appendChild(cellBack)
-        gameBoard.appendChild(cellNode)
-
-        cellNode.addEventListener('click', flipCard)
-    })
-
-    return cellsNodes
-}
-
-const addImages = () => {
-    const catsContainers = document.querySelectorAll('.cell__back')
-
-    catsContainers.forEach((cat, index) => {
-        cat.setAttribute('src', shuffledCats[index])
-    })
+            boardCell.addEventListener('click', flipCard)
+        })
 }
 
 export {
-    prepareBoard,
-    createCells,
-    addImages
+    createCells
 }

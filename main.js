@@ -1,4 +1,4 @@
-import { prepareBoard, createCells, addImages } from './board'
+import { createCells } from './board'
 
 const mainBoard = document.querySelector('.main__board')
 const scoresResult = document.querySelector('.result')
@@ -36,9 +36,7 @@ const checkBoard = () => {
     selectedCards = []
 }
 
-prepareBoard()
 createCells()
-addImages()
 
 export {
     flipCard
