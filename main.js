@@ -11,14 +11,13 @@ const flipCard = event => {
 
     if (selectedCards.length === 2) {
         mainBoard.classList.add('disabled')
-        setTimeout(() => {
-            checkBoard()
-        }, 1000)
+        setTimeout(checkBoard, 1000)
     }
 }
 
 const checkBoard = () => {
     const [firstCard, secondCard] = selectedCards
+
     if (firstCard.lastChild.src === secondCard.lastChild.src) {
         selectedCards = []
         mainBoard.classList.remove('disabled')

@@ -24,7 +24,7 @@ const shuffleArray = array => {
 
 const createCells = () => {
     shuffleArray(imgs.concat(imgs))
-        .forEach((img) => {
+        .forEach(img => {
             const boardCell = document.createElement('div')
             const cellFront = document.createElement('div')
             const cellBack = document.createElement('img')
