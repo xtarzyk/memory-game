@@ -1,38 +1,40 @@
 import { prepareBoard, createCells, addImages } from './board'
 
+const mainBoard = document.querySelector('.main__board')
+const scoresResult = document.querySelector('.result')
 let selectedCards = []
-let foundPairs = []
-let clickLimit = 2
+let scores = 0
 
 const flipCard = event => {
-    let currentCats = document.querySelectorAll('.toggle-board__cell')
-
-    if (!clickLimit) {
-        resetBoard(currentCats)
-    }
-
     event.target.parentNode.classList.add('toggle-board__cell', 'disabled')
-    selectedCards.push(event.target.nextSibling.src)
-    clickLimit--
-    console.log(selectedCards)
-    console.log(foundPairs)
+    selectedCards.push(event.target.parentNode)
+
+    if (selectedCards.length === 2) {
+        mainBoard.classList.add('disabled')
+        setTimeout(() => {
+            checkBoard()
+        }, 1000)
+    }
 }
 
-const resetBoard = currentCats => {
-    clickLimit = 2
-    if (selectedCards[0] === selectedCards[1]) {
-        selectedCards.forEach(card => foundPairs.push(card))
+const checkBoard = () => {
+    if (selectedCards[0].lastChild.src === selectedCards[1].lastChild.src) {
         selectedCards = []
+        mainBoard.classList.remove('disabled')
+        scores++
+        scoresResult.innerHTML = `${scores}`
+
         return
     }
-    currentCats.forEach(cat => {
-        cat.classList.toggle('toggle-board__cell')
-        cat.classList.toggle('disabled')
+
+    selectedCards.forEach(card => {
+        card.classList.toggle('toggle-board__cell')
+        card.classList.toggle('disabled')
+        mainBoard.classList.remove('disabled')
     })
+
     selectedCards = []
 }
-
-
 
 prepareBoard()
 createCells()

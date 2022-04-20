@@ -3,8 +3,16 @@ import { flipCard } from './main'
 const boardArray = Array.from({ length: 20 })
 const gameBoard = document.querySelector('.main__board')
 const boardCell = document.createElement('div')
+const scoresBoard = document.querySelector('.main__scores')
+const scoresHeader = document.createElement('h1')
+const result = document.createElement('h1')
 const imgs = ['img/cat-black.jpg', 'img/cat-climbs.jpg', 'img/cat-flower.jpg', 'img/cat-grey.jpg', 'img/cat-grey-white.jpg', 'img/cat-licks.jpg', 'img/cat-sitting.jpg', 'img/cat-sneaky-black.jpg', 'img/cat-watch.jpg', 'img/cat-watch-2.jpg']
 
+scoresHeader.innerHTML = 'Scores: '
+result.innerHTML = '0'
+result.classList.add('result')
+scoresBoard.appendChild(scoresHeader)
+scoresBoard.appendChild(result)
 boardCell.classList.add('board__cell')
 
 const duplicateImages = imgs.flatMap(img => [img, img])
@@ -20,7 +28,6 @@ const shuffleArray = array => {
 }
 
 const shuffledCats = shuffleArray(duplicateImages)
-console.log(shuffledCats)
 
 const prepareBoard = () => boardArray.fill(boardCell)
 
