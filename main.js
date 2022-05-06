@@ -1,16 +1,14 @@
 import { createCells } from './board'
 
-const mainBoard = document.querySelector('.main__board')
-const scoresResult = document.querySelector('.result')
 let selectedCards = []
 let score = 0
 
 const flipCard = event => {
-    event.target.parentNode.classList.add('toggle-board__cell', 'disabled')
-    selectedCards = selectedCards.concat(event.target.parentNode)
+    $(event.target).parent().addClass('toggle-board__cell', 'disabled')
+    selectedCards = selectedCards.concat($(event.target).parent())
 
     if (selectedCards.length === 2) {
-        mainBoard.classList.add('disabled')
+        $('.main__board').addClass('disabled')
         setTimeout(checkBoard, 1000)
     }
 }
@@ -18,19 +16,19 @@ const flipCard = event => {
 const checkBoard = () => {
     const [firstCard, secondCard] = selectedCards
 
-    if (firstCard.lastChild.src === secondCard.lastChild.src) {
+    if ($(firstCard).children().last().attr('src') === ($(secondCard).children().last().attr('src'))) {
         selectedCards = []
-        mainBoard.classList.remove('disabled')
+        $('.main__board').removeClass('disabled')
         score++
-        scoresResult.innerHTML = `${score}`
+        $('.result').text(`${score}`)
 
         return
     }
 
     selectedCards.forEach(card => {
-        card.classList.toggle('toggle-board__cell')
-        card.classList.toggle('disabled')
-        mainBoard.classList.remove('disabled')
+        $(card).toggleClass('toggle-board__cell')
+        $(card).removeClass('disabled')
+        $('.main__board').removeClass('disabled')
     })
 
     selectedCards = []
