@@ -1,4 +1,4 @@
-import { createCells } from './board'
+import { getCatsImgs } from './board'
 
 let selectedCards = []
 let score = 0
@@ -34,7 +34,7 @@ const checkBoard = () => {
     selectedCards = []
 }
 
-createCells()
+getCatsImgs()
 
 export {
     flipCard
