@@ -1,5 +1,4 @@
 import { getCatsImgs } from './board'
-//  27ebfa90-bb94-4e12-a8dd-5f527401fb31,   string parameter e.g. 'api_key=27ebfa90-bb94-4e12-a8dd-5f527401fb31'
 
 let selectedCards = []
 let score = 0
@@ -35,7 +34,6 @@ const checkBoard = () => {
     selectedCards = []
 }
 
-// createCells()
 getCatsImgs()
 
 export {
