@@ -38,10 +38,11 @@ const getCatsImgs = async () => {
     })
         .then(res => res.json())
         .then(json => json.forEach(obj => imgs = imgs.concat(obj.url)))
-        .catch(error => alert(error))
-
-    $loader.remove()
-    createCells()
+        .catch(error => $('<div>').text(error + '  ;-(').addClass('error').appendTo('.main__board'))
+        .finally(() => {
+            $loader.remove()
+            createCells()
+        })
 
     return response
 }
