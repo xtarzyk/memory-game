@@ -30,6 +30,7 @@ const createCells = () => {
 }
 
 const getCatsImgs = async () => {
+    const $loader = $('<div>').addClass('loader').appendTo('.main__board')
     const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10&mime_types=jpg,png', {
         headers: {
             "x-api-key": "27ebfa90-bb94-4e12-a8dd-5f527401fb31"
@@ -37,9 +38,11 @@ const getCatsImgs = async () => {
     })
         .then(res => res.json())
         .then(json => json.forEach(obj => imgs = imgs.concat(obj.url)))
-        .catch(error => console.log(error))
+        .catch(error => alert(error))
 
+    $loader.remove()
     createCells()
+
     return response
 }
 
